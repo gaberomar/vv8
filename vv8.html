@@ -19,7 +19,6 @@ var sv = getParam("sv");
 <script type="text/javascript" src="http://tv.arn.ps/jwplayer.js"></script>
 <link href="http://xemtiviviet.com/xtvcss/video-js.min.css" rel="stylesheet"/>
 <script type="text/javascript" src="http://tv.arn.ps/main.js" charset="UTF-8"></script>
-<script src="http://tv.arn.ps/jquery.min.js"></script>
 <script src="http://tv.arn.ps/videojs.logobrand.js"></script>
 <script src="http://tv.arn.ps/video.min.js"></script>
 <script src="http://tv.arn.ps/videojs-ie8.min.js"></script>
@@ -55,29 +54,12 @@ var sv = getParam("sv");
 			 }
 	</script>
 <script>
+            $(function() {
+               var player = window.player = videojs('livestream-player');
+            });
+        </script>
+    
 
-			// save a reference to the video element
-			video = document.querySelector('video'),
-
-			// save a reference to the video.js player for that element
-			player = videojs(video);
-
-			// initialize the plugin with some custom options:
-			player.logobrand({
-				//height: "32px",
-				//width: "32px",
-				image: "http://www.videojs.com/img/logo.png",
-				destination: "http://www.videojs.com/"
-			});
-			//player.logobrand().loadImage("http://instasynch.com/images/youtube.png");
-			//player.logobrand().setDestination("http://instasynch.com/images/youtube.png");
-
-			document.getElementById("example").onclick = function(){
-				player.logobrand().loadImage("http://instasynch.com/images/logoNoBG.png");
-				player.logobrand().setDestination("http://instasynch.com");
-				this.innerHTML = "Image+destination changed!";
-			};
-		</script>
 
 <div id="videojs">
 </div>
