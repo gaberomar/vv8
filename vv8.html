@@ -30,9 +30,38 @@ var sv = getParam("sv");
         </video>
 </div>
   	<script>
-    function play(link){if(link.indexOf('.php')!=-1){var xmlhttp=new XMLHttpRequest();xmlhttp.open("GET",link,!1);xmlhttp.send();src=xmlhttp.responseText}else src=link;player=videojs("play");player.ready(function(){player.src({src:src,type:"application/x-mpegURL"})});player.play()}
-		    function reload() {if (player.paused() && player.error_ != null)play(sv);}
-		    function init() { play(sv); setInterval(function() {reload()}, 3000);} </script>
+   function play(cid) {
+
+
+				src = cid;
+			player = videojs("streaming");
+			player.ready(function() {
+				player.src({
+					src: src,
+					type: "application/x-mpegURL",
+				});
+			});
+
+			player.play();
+
+		}
+		function reload(i) {
+			if (player.paused() && player.error_ != null )
+			{
+				play(sv);
+			}
+			 
+			 
+				
+		}
+		function init() {
+			var i = 1;
+			play(sv);
+			setInterval(function() {reload(i); i++ }, 1000);
+		}
+		
+			 
+	</script>
 </body>
 </html>     
 <span style="background: transparent; box-sizing: border-box; color: white; font-size: 10px; font-weight: bold; height: 38px; padding: 0px 5px; position: absolute; right: 60px; top: 400px; width: 70px;"></span><img pagespeed_url_hash="b8e6b5a44e2403b" src="https://4.bp.blogspot.com/-34SPx0qzBko/XV2tEcLbiVI/AAAAAAAAID8/H9j9Vrfo1jEVSq8xyWQgPvowGHt94SYvwCK4BGAYYCw/s1600/logo1.png" style="border: none; box-sizing: border-box; height: 30px; padding: 0px; position: absolute; right: 15px; top: 20px; vertical-align: middle; width: 90px;" />
