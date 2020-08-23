@@ -26,13 +26,15 @@ var sv = getParam("sv");
 <body onload="init()">
 
 <video style="width:100%" id="play" class="video-js vjs-fluid vjs-default-skin" poster="https://www.nuevodevel.com/media/video/fit.webp" playsinline controls preload="none">
-</video>
 
+< source: sv, res="240" label="240p" type="video/mp4">< source: sv, res="360" label="360p" type="video/mp4">< source: sv, res="480" label="480p" type="video/mp4">
+< source: sv, res="720" label="720p" type="video/mp4">< source: sv, res="1080" label="1080p" type="video/mp4"></video>
   	<script>
     function play(link){if(link.indexOf('.html')!=-1){var xmlhttp=new XMLHttpRequest();xmlhttp.open("GET",link,!1);xmlhttp.send();src=xmlhttp.responseText}else src=link;player=videojs("play");player.ready(function(){player.src({src:src,type:"application/x-mpegURL"})});player.play()}
 		    function reload() {if (player.paused() && player.error_ != null)play(sv);}
 		    function init() { play(sv); setInterval(function() {reload()}, 3000);} </script>
-
+	
+<script>var player=videojs("veoplayer");player.nuevo({related:related_videos,title:"Nuevo plugin for VideoJs Player",url:"http://raw.githack.com/gaberomar/vv8/master/vv8.html",slideImage:"/media/video/demo_slide.jpg"});</script>
 </div>
 <div id="videojs">
 </div>
