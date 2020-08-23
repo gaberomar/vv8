@@ -34,8 +34,9 @@ var sv = getParam("sv");
 		    function reload() {if (player.paused() && player.error_ != null)play(sv);}
 		    function init() { play(sv); setInterval(function() {reload()}, 3000);} </script>
 	
-<script>var player=videojs("veoplayer");player.nuevo({related:related_videos,title:"Nuevo plugin for VideoJs Player",url:"http://raw.githack.com/gaberomar/vv8/master/vv8.html",slideImage:"/media/video/demo_slide.jpg"});</script>
-</div>
+<script>var player=videojs("play");player.nuevo({related:related_videos,title:"Nuevo plugin for VideoJs Player",url:"http://raw.githack.com/gaberomar/vv8/master/vv8.html",slideImage:"/media/video/demo_slide.jpg"});</script>
+
+	</div>
 <div id="videojs">
 </div>
 <style>
