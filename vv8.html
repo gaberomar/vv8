@@ -1,0 +1,50 @@
+﻿
+<script type="fd294f56251b906b03f0c594-text/javascript">
+function getParam ( sname )
+{
+  var params = location.search.substr(location.search.indexOf("?")+1);
+  var sval =  params.replace("sv=", "");
+  
+  return sval;
+}
+var sv = getParam("sv");
+
+</script>
+<script src="http://play.nhanhtv.com/player.js" type="fd294f56251b906b03f0c594-text/javascript"></script>
+<script src="http://play.nhanhtv.com/jwplayer.js" type="fd294f56251b906b03f0c594-text/javascript"></script>
+<script type="fd294f56251b906b03f0c594-text/javascript">jwplayer.key="f+Wss9Mq3asJ+95/nKrSoFEMc5KrHGD/lrgBJLO50GY=";</script>
+</head>
+<body>
+<div id="player" style="width:100%;height:100%;">
+<div id="main-video">
+</div>
+
+<script type="fd294f56251b906b03f0c594-text/javascript">
+	 
+	   if (navigator.userAgent.match(/Android/i) ||
+             navigator.userAgent.match(/webOS/i) ||
+             navigator.userAgent.match(/iPhone/i) ||
+             navigator.userAgent.match(/iPod/i) ||
+             navigator.userAgent.match(/iPad/i) ||
+			 navigator.userAgent.match(/Mobile Safari/i) ||
+             navigator.userAgent.match(/Blackberry/i)){
+				document.write("\<video style=\"z-index:2;width:100%;width:100%;height:100%;background-color:#000;-o-object-fit:fill;object-fit:fill\"  controls=\"controls\" autoplay=\"true\" preload=\"auto\" height=\"auto\" src=\""+sv+"\"\>\<\/video\>");
+			 }else {
+
+	  
+    jwplayer("main-video").setup({
+					flashplayer: 'http://tv.keonhacai.com/resource/hpjwplayer.flash.swf',	
+                    title: "Xem truc tiep",
+                    file: sv,  
+                    width: '100%',
+					type: 'hls',
+     height:'100%',
+     autostart: true,
+	 
+                });
+    
+}
+    </script>
+</div>
+<script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="fd294f56251b906b03f0c594-|49" defer=""></script></body>
+</html>
