@@ -1,6 +1,7 @@
-<html>
-<head>
 
+
+
+<meta name="referrer" content="no-referrer">
 <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
 <script src="https://unpkg.com/video.js/dist/video.js"></script>
 <script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
@@ -16,23 +17,80 @@ function getParam ( sname )
 var sv = getParam("sv");
 
 </script>
- </head>
-<body style="margin:0;background:#000;">
-<div id="iframeDiv" style="width: 100%;"> 
+<body onload="init()">
 
-<video id=player class="video-js vjs-default-skin" controls> </video>
-<script>
-  var player = videojs('player');
-  player.src({ src: sv, type: 'application/dash+xml'});
+	<div id="videojs">
+		<video id="streaming" autoplay preload="auto" height="100%" width="100%" class="video-js" controls data-setup='{"language": "vi"}'></video>
+	</div>
+	<script>
 
-  player.play();
-</script>
-<div id="videojs">
-</div>
+	
+	 var i = 0;
+	
+	function play(link) {
+			 if(link.indexOf('type=get')!=-1){var xmlhttp=new XMLHttpRequest();xmlhttp.open("GET",link,!1);xmlhttp.send();src=xmlhttp.responseText}else src=link;
+	    player = videojs("streaming");
+	    player.ready(function() {
+	        player.src({
+	            src: sv,
+	            type: "application/x-mpegURL",
+
+
+ 
+           
+	        })
+	    });
+
+
+
+	    player.play()
+		i++;
+		
+	}
+	function reload(i) {
+	    if (player.paused() && player.error_ != null) {
+	        if (i < link.length) {
+	            play(link[i])
+	        } else {
+	            clearInterval(interval);
+	            document.write('<iframe id="Myiframe" src="http://raw.githack.com/gaberomar/vv4/master/1.html?sv= " scrolling="no" height="100%" allowfullscreen="true" width="100%" frameborder="0"></iframe>')
+	        }
+			
+	    }
+	}
+
+	function init() {
+	   
+	    link=["",""];
+	    play(link[i]);
+	    interval = setInterval(function() {
+	        
+	        reload(i);
+			
+	    }, 2000)
+	}
+  player.vjs.on('error', function() {
+                                    $.ajax({
+                                        url: "https://geoip-db.com/jsonp",
+                                        jsonpCallback: "callback",
+                                        dataType: "jsonp",
+                                        success: function( location ) {
+                                            if(location.country_code != 'TR'){
+                                                var modal = player.vjs.createModal('Uluslararası müsabakalardaki telif kısıtlamaları nedeniyle Türkiye sınırları dışında izlenememektedir.');
+                                                modal.addClass('vjs-my-fancy-modal');
+                                            }
+                                        }
+                                    });
+                                    //var error = player.vjs.error();
+                                });                 	
+				
+		
+	</script>
+
 <style>
 	.video-js {
 		width: 100%;
-		height: 95%;
+		height: 99%;
 	}
 	body {
 		text-align: center;
@@ -40,11 +98,14 @@ var sv = getParam("sv");
 	}
 	#videojs {
 		width: 100%;
-		height: 95%;
+		height: 99%;
 	}.streaming-dimensions{
 				width: 100% !important;
-		height: 95% !important;
+		height: 99% !important;
 	}
 </style>
 </body>
-</html>
+<span style='position:absolute; bottom: 35px!important; left: 10px!important; max-bottom: 10px!important; max-width: 170%!important; width: 22%!important; font-size: 13px; font-weight: bold;color: #ff0;'>
+<img style= 'left: 10px!important; max-height: 50px!important; max-width: 100%!important; width: 90%!important;' src='http://1.bp.blogspot.com/-6Utq5JU_l2w/YCAo8gB0x7I/AAAAAAAALZU/YJxOQHkvIywpU4znsCgYEvIsc-U8ijY1wCK4BGAYYCw/s1600/2.png'></span>
+
+
