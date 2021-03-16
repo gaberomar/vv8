@@ -1,12 +1,18 @@
 
 
 
-<meta name="referrer" content="no-referrer">
-<link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-<script src="https://unpkg.com/video.js/dist/video.js"></script>
-<script src="https://cdn.dashjs.org/latest/dash.all.debug.js"></script>
-<script src="https://unpkg.com/videojs-contrib-dash/dist/videojs-dash.js"></script>
-<script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+
+<html>
+    <head>
+        <style> video {object-fit:fill}</style><style>html,body{margin:0;}</style>
+<style> .video-js {width: 100%; height: 100%;} #videojs {width: 100%; height: 100%;}</style></head>
+	<meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="robots" content="noindex, nofollow">
+                            
+                                <script>
 function getParam ( sname )
 {
   var params = location.search.substr(location.search.indexOf("?")+1);
@@ -16,96 +22,104 @@ function getParam ( sname )
 }
 var sv = getParam("sv");
 
-</script>
-<body onload="init()">
+</script>   
+                                     <script src="https://cdn.radiantmediatechs.com/rmp/5.9.0/js/rmp-shaka.min.js"></script>
+                                     <script src="https://cdn.radiantmediatechs.com/rmp/5.11.6/js/rmp-hlsjs.min.js"></script>
+                                     
 
-	<div id="videojs">
-		<video id="streaming" autoplay preload="auto" height="100%" width="100%" class="video-js" controls data-setup='{"language": "vi"}'></video>
-	</div>
-	<script>
+                                <script>
+function getParam ( sname )
+{
+  var params = location.search.substr(location.search.indexOf("?")+1);
+  var sval =  params.replace("sv=", "");
+  
+  return sval;
+}
+var sv = getParam("sv");
 
-	
-	 var i = 0;
-	
-	function play(link) {
-			 if(link.indexOf('type=get')!=-1){var xmlhttp=new XMLHttpRequest();xmlhttp.open("GET",link,!1);xmlhttp.send();src=xmlhttp.responseText}else src=link;
-	    player = videojs("streaming");
-	    player.ready(function() {
-	        player.src({
-	            src: sv,
-	            type: "application/x-mpegURL",
+</script>   
+                                     
+                            </head>
+                            <body>
+                             
+ <style>
+                                html,
+                                body {
+                                    height: 100%;
+                                    width: 100%;
+                                    background-color: #000;
+                                    overflow: hidden;
+                                    margin: 0;
+                                    padding: 0;
+                                }
+                                .rmp-overlay-button .rmp-i-play {
+                                    font-size: 120px !important;
+                                }
 
+                                .rmp-i-play:hover, rmp-i-volume:hover, rmp-i-pause:hover {
+                                    color: #552a86 !important;  
+                                }
 
- 
-           
-	        })
-	    });
+                                .rmp-module {
+                                    top: 30px !important;
+                                }
 
+                                .rmp-module-overlay-icons {
+                                    top: 30px !important;
+                                }
 
-
-	    player.play()
-		i++;
-		
-	}
-	function reload(i) {
-	    if (player.paused() && player.error_ != null) {
-	        if (i < link.length) {
-	            play(link[i])
-	        } else {
-	            clearInterval(interval);
-	            document.write('<iframe id="Myiframe" src="http://raw.githack.com/gaberomar/vv4/master/1.html?sv= " scrolling="no" height="100%" allowfullscreen="true" width="100%" frameborder="0"></iframe>')
-	        }
-			
-	    }
-	}
-
-	function init() {
-	   
-	    link=["",""];
-	    play(link[i]);
-	    interval = setInterval(function() {
-	        
-	        reload(i);
-			
-	    }, 2000)
-	}
-  player.vjs.on('error', function() {
-                                    $.ajax({
-                                        url: "https://geoip-db.com/jsonp",
-                                        jsonpCallback: "callback",
-                                        dataType: "jsonp",
-                                        success: function( location ) {
-                                            if(location.country_code != 'TR'){
-                                                var modal = player.vjs.createModal('Uluslararası müsabakalardaki telif kısıtlamaları nedeniyle Türkiye sınırları dışında izlenememektedir.');
-                                                modal.addClass('vjs-my-fancy-modal');
-                                            }
-                                        }
-                                    });
-                                    //var error = player.vjs.error();
-                                });                 	
-				
-		
-	</script>
-
-<style>
-	.video-js {
-		width: 100%;
-		height: 99%;
-	}
-	body {
-		text-align: center;
-		margin: 0px;
-	}
-	#videojs {
-		width: 100%;
-		height: 99%;
-	}.streaming-dimensions{
-				width: 100% !important;
-		height: 99% !important;
-	}
-</style>
-</body>
-<span style='position:absolute; bottom: 35px!important; left: 10px!important; max-bottom: 10px!important; max-width: 170%!important; width: 22%!important; font-size: 13px; font-weight: bold;color: #ff0;'>
-<img style= 'left: 10px!important; max-height: 50px!important; max-width: 100%!important; width: 90%!important;' src='http://1.bp.blogspot.com/-6Utq5JU_l2w/YCAo8gB0x7I/AAAAAAAALZU/YJxOQHkvIywpU4znsCgYEvIsc-U8ijY1wCK4BGAYYCw/s1600/2.png'></span>
+                              
+                            </style>
+<div id="rmpPlayer"></div>
 
 
+
+
+                                <script>
+								     function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var live = getUrlVars()["live"];
+var ch = getUrlVars()["channel"];
+
+                                    var src = {
+                                        hls: sv,
+                                    };
+
+                                    var settings = {
+                                        licenseKey: 'Y21jbXNvc2tpayEqXyVlazBnZW83MDJla2Nza3Y/cm9tNWRhc2lzMzBkYjBBJV8q',
+                                        iframeMode: true,
+                                        iframeAllowed: true,
+                                        sharing: true,
+                                        skin: 's3',
+                                        src: sv,
+                                        pip: true,
+                                        poster: '',
+                                        logo: 'https://4.bp.blogspot.com/-34SPx0qzBko/XV2tEcLbiVI/AAAAAAAAID8/H9j9Vrfo1jEVSq8xyWQgPvowGHt94SYvwCK4BGAYYCw/s1600/logo1.png',
+                                        logoLoc: '',
+                                        logoPosition: 'top-left',
+                                        logoWatermark: 'false',
+                                        mute: 'false',
+                                        isLive: true,
+                                        hlsJSMaxBufferLength: 12,
+                                        hlsJSLiveSyncDuration: 3,
+                                        gaTrackingId: '',
+                                        gaCategory: '',
+                                        gaLabel: '',
+                                        gaEvents: ['context', 'ready', 'playerstart', 'error', 'adimpression', 'adloadererror', 'aderror']
+                                    };
+                                    var elementID = 'rmpPlayer';
+                                   
+                                    var rmp = new RadiantMP(elementID);
+                                    rmp.init(settings);
+                                    
+
+                                </script>
+
+                               
+                            </body>
+                            </html>
